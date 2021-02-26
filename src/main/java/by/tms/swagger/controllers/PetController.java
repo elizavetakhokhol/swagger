@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping(path = "/pet")
@@ -14,7 +16,7 @@ public class PetController {
     PetService petService;
 
     @PostMapping
-    public ResponseEntity<Pet> newPet(@RequestBody Pet pet) {
+    public ResponseEntity<Pet> newPet(@RequestBody @Valid Pet pet) {
         petService.save(pet);
         return new ResponseEntity<>(pet, HttpStatus.OK);
     }

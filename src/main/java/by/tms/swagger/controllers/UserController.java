@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,7 +20,7 @@ public class UserController {
     UserService userService;
 
     @PostMapping
-    public ResponseEntity<User> newUser(@RequestBody User user){
+    public ResponseEntity<User> newUser(@RequestBody @Valid User user){
         userService.save(user);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
